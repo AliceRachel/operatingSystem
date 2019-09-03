@@ -1,0 +1,24 @@
+#include "stdio.h"
+#include <sys/types.h>  /* 提供类型pid_t的定义 */
+#include <unistd.h>
+main()	
+{   
+    pid_t  id=0；
+    char    *parameter[3];
+    parameter[0] = "ls";
+    parameter[1] = "-l";
+    parameter[2] = 0 ;
+ 
+    printf("* * * About to exec ls -l\n");
+    printf("* * * AAAAAAAAA*****\n");
+    id=fork();
+    if(id= =0)
+    {
+       execvp( "ls" , parameter );
+    }
+    else
+    {
+       printf("* * * ls is done. bye\n");
+       printf("* * * BBBBBBBBBB*****\n");
+    }
+}

@@ -1,0 +1,195 @@
+-----example 1--------------------
+parent
+#include <stdio.h>
+int main()
+{
+ int id;
+	printf("hello Linux!\n");
+ id=fork();
+ if(id>0) 
+  printf(“I am parent.return value of fork is:%d\n”,id);
+else if(id==0)
+  printf(“I am child\n”);
+else
+  printf("fork error\n");
+return 1;
+}
+
+child
+#include <stdio.h>
+int main()
+{
+ int id;
+	printf("hello Linux!\n");
+ id=fork();
+ if(id>0) 
+  printf(“I am parent\n”);
+else if(id==0)
+  printf(“I am child\n”);
+else
+  printf("fork error\n");
+return 1;
+}
+
+
+gcc forktest1.c -o forktest.o
+
+child
+#include “stdio.h”
+main()
+{
+ int id;
+	printf("hello Linux!\n");
+ id=fork();
+ if(id>0) 
+  printf(“parent\n”);
+else if(id==0)
+  printf(“child\n”);
+else
+  printf("fork error\n");
+}
+
+gcc forktest.c -o forktest
+./forktest
+
+child
+parent
+
+
+
+
+
+forktest2.c
+--------------example 2------------
+#include "stdio.h"
+#include "sys/types.h"
+#include "unistd.h"
+
+int main()
+{int id;
+printf(“PID before fork():%d\n”,(int)getpid()); 
+id=fork(); 
+ if(id>0)
+   printf(“parent PID:%d\n”,(int)getpid());
+else 
+   printf(child PID:%d\n”,(int)getpid());
+return 1;
+}
+
+parent and its child excute concurrently(并发)
+
+
+
+child
+#include “sys/types.h”
+#include “unistd.h”
+
+main()
+{int id;
+printf(“PID before fork():%d\n”,(int)getpid()); 
+id=fork(); 
+ if(id>0)
+   printf(“parent PID:%d\n”,(int)getpid());
+else 
+   printf(child PID:%d\n”,(int)getpid());
+}
+
+PID before fork():22448
+child PID:22449
+parent PID:22448
+
+
+forktest3.c
+-------------example 3---------
+#include “stdio.h”
+int main()
+{int i;
+ if(fork()>0) 
+  for(i=0;i<5;i++)
+   {  printf("AAAAAAAAAAAAAAAA\n");
+      sleep(2);
+   }
+else 
+    for(i=0;i<5;i++)
+   {
+      printf("BBBBBBBBBBBBBBBBB\n");
+      sleep(2);
+   }
+return 1;
+}
+
+
+4 wait的使用
+#include “stdio.h”
+
+main()
+{int i;
+ if(fork()>0) 
+ {wait(NULL);
+  for(i=0;i<5;i++)
+   {
+      printf("AAAAAAAAAAAAAAAA\n");
+      sleep(2);
+   }
+  }
+else 
+    for(i=0;i<5;i++)
+   {
+      printf("BBBBBBBBBBBBBBBBB\n");
+      sleep(2);
+   }
+}
+
+---------example 4----------------
+exec() is a family of functions, there are many version of exec(), such as execlp(),execvp()....
+
+#include <stdio.h>
+#include <unistd.h>
+int main()	
+{
+    char *parameter[3];
+        
+    printf("* * * About to exec ls -l\n");
+    printf("* * * AAAAAAAAA*****\n");
+    execlp( "/bin/ls" , "ls",NULL );
+    printf("* * * ls is done. bye\n");
+    printf("* * * BBBBBBBBBB*****\n");
+return 1;
+}
+
+
+
+
+
+6 P 92 3.10
+
+7 shell0.c
+//shell0.c
+#include “stdio.h”
+#include “string.h”
+int main()
+{ char cmd[100]; 
+  char *argv[2];
+  while(1)
+  { printf(“%%”); 
+    scanf(“%s”,cmd);
+    if(strcmp(cmd,“exit”)==0) 
+       break;
+    argv[0]=cmd;
+    argv[1]=0;
+    if(fork()>0)
+    { 
+       wait(NULL);
+       continue;
+    }
+    else
+    {
+      execvp(cmd,argv);
+      printf("cannot excute the command!\n");
+      exit(1);
+      	
+    }
+  }
+return 1;
+}
+

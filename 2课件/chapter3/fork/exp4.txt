@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <sys/types.h>  
+#include <unistd.h>
+int main()	
+{   
+    pid_t  id=0£»
+    char    *parameter[3];
+    parameter[0] = "ls";
+    parameter[1] = "-l";
+    parameter[2] = 0 ;
+    
+    printf("* * * About to exec ls -l\n");
+    printf("* * * AAAAAAAAA*****\n");
+    id=fork();
+    if(id==0)
+    {
+        execvp( "ls" , parameter );
+	printf("cannot execute the command!\n");
+    }
+    else
+    {
+       wait(NULL);
+       printf("* * * ls is done. bye\n");
+       printf("* * * BBBBBBBBBB*****\n");
+    }
+return 1;
+}

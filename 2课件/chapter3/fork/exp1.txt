@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <unistd.h>
+main()	
+{
+    char *parameter[2];
+    parameter[0] = "ls";
+    parameter[1] = NULL;
+       
+    printf("* * * About to exec ls -l\n");
+    printf("* * * AAAAAAAAA*****\n");
+    execvp( "ls" , parameter );
+    printf("* * * ls is done. bye\n");
+    printf("* * * BBBBBBBBBB*****\n");
+}
