@@ -1,0 +1,32 @@
+期末考试题型：
+单选：10题*2分=20分
+填空：5空*2分=10分
+简答：4题*5分=20分
+      分页地址变换
+      前驱图（进程同步的信号量描述）
+      概念性题目1
+      概念性题目2
+算法分析题5题*10分=50分
+（1）信号量（生产者消费者类型题目）
+（2）CPU调度算法（FCFS，SJF，HRRN，RR）
+（3）银行家算法
+（4）虚存页面置换算法（OPT，FIFO，LRU）
+（5）磁盘移臂调度算法（FCFS，SSTF，SCAN，CSCAN CLOOK）
+----------------------------------------------
+简答题必有的题型
+（1）Translate the logical address to a physical address. ( calculate in binary form)
+（2）Realize the cooperation relationship between s1,s2,s3,s4,s5,s6 in the graph by using semaphore.
+
+
+简答题文字描述相关题型
+1、What is the Operating System？List 3-4 examples of OS.
+2、What is System Calls？
+3、what is process？Describe Process states and illustrate these transitions by diagram. 
+4、Please describe the concept of Deadlock？please write down conditions of Deadlock?
+5、List 4-5 kinds of memory management techniques.
+6、How are disk blocks allocated for files (describe file allocation methods )? 
+7、Illustrate the Free-Space Management methods.
+8、List I/O control methods. Can Busy-wait exist in which control methods? 
+
+
+
