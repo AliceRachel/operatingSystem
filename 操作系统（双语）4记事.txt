@@ -1,0 +1,154 @@
+2018.3.6 第1次课
+QQ群：262299344 用学号和姓名修改群名片
+1 什么是程序？指挥计算机工作的一组指令。（可执行程序）
+2 程序有什么组成：printf("hello OS!");指令+数据
+3 内存（主存）：存储正在执行的程序。
+  进程：process（a program is in exection）
+  process and program:
+  program is a static entity.
+  process is a dynamic entity.Process has its own life period.
+  程序和进程不是一一对应的。
+4 CPU：处理器是用来执行程序的。
+5 外存：存储数据。
+
+6 计算机系统的资源（computer resources）:
+
+software:进程，,文件file system（数据）
+hardware:CPU,存储器（main memory），设备（I/O devices）
+
+7 操作系统：能够管理计算机系统的软件和硬件资源的系统软件。
+8 为什么需要OS：操作系统屏蔽了底层的硬件细节。给用户提供了一个清晰，易用的操作接口。
+9 programming level
+(1)application programming
+(2)system programming
+(3)kernel programming
+10 computer organization
+CPU,memory,I/O controller,bus
+
+task P15-17
+
+------------------------------------------------
+2018.3.9 第二次课
+overview：
+（1）list computer resources.
+software:file system,process(进程)
+hardware:CPU,main memory,I/O devices
+（2）what is Operating system？
+OS is a system program,it can manage all the computer resources,it also can provide platform for user.
+（3）what is process? Try to discribe the difference between program and process?
+   Process is a program is in execution.program is a static entity,process is dynamic entity.Process has its own life period.
+
+1 OS development stages:
+（1）simple batch system:one task in main memory.
+     Monitor.
+(2)multiprogrammming batch system:
+     multiple tasks are kept in the main memory at any time.
+     OS:CPU scheduling,job scheduling.
+
+CPU become free:I/O; program finish.
+
+(3)time sharing(分时系统，分享CPU的时间片)
+   CPU become free:I/O; program finish；time out
+   compare multiprogrammming batch system,time sharing should have more overhead（开销）.
+  时间片不能太大，也不能太小，应该大于一次典型交互的时间。
+   有比较好的相应时间和用户的交互，相对公平的一种OS。
+（4）real time system(实时操作系统)：用在嵌入式领域，有严格的时间限制。
+
+2 keywords for chapter 1.
+3 Linux安装和简单使用。
+----------------------------------------------------
+2018.3.12 第3次课 Linux基本操作
+overview：
+（1）discribe OS development stages.
+（2）what is time slice in time sharing system?
+1 用户创建
+ctrl+alt+f1-f7：在图形界面和文本界面的虚拟终端间切换。
+useradd zhangsan
+passwd zhangsan
+2 文件系统（file system）：some commands usage
+  useradd
+  passwd
+  cd 
+  ls(ls -a)(ls -l)
+  virtual termimal
+  mkdir
+  pwd
+  rmdir
+  rm
+  cp 
+  mv
+  find
+绝对路径和相对路径
+-------------------------------------------------
+2018.3.16 第4次课
+3 vi：editor
+vi 操作：
+（1）vi filename
+ (2) command mode,insert mode.
+     c->i(i,a,o);i->c(esc)
+     command mode:nyy（copy），p（paste），ndd（delete），u（undo），set number,/string(find a string)
+4 gcc:compiler
+  c code must have the .c suffix.
+  gcc file.c -o file.o   get an executable file
+  ./file.o
+
+chapter2 
+1 OS services
+2 interface  CML(shell 命令解释程序),GUI（desktop,icon,folder）
+3 system call(系统调用)：Programming interface to the services provided by the OS。
+4 OS structure
+  simple structer  DOS
+  layer structer   UNIX
+  microkernel structer  MAC
+  module structer       solaries
+ 
+---------------------------------------------
+2018.3.20 第5次课
+overview
+（1）what is system call?
+（2）list some OS Structure
+
+chapter 3
+1 Concurrency（并发）
+  并发：单处理器多任务系统中，在一段时间间隔内，宏观上多个任务都在执行，但是微观上轮流使用处理器。这样表现出来的程序执行的特征叫做并发。
+  并行：多个任务在同一时刻发生，前提是多处理器系统。
+  程序并发带来的问题：在共享资源的时候，会出现“结果不可再现”。
+  引入进程：使得并发的多个实体执行“结果可再现”。
+2 Process Concept，compare process and program
+3 * Process state
+    new,running,ready,waiting(block),terminated
+4 * PCB
+    each process has its own PCB, PCB is a container of process's information.
+
+5 Process Scheduling
+
+6 Operations on Processes（practicing）
+7 Interprocess Communication（practicing）
+
+P7-填空4
+ready
+5-PCB
+  
+
+
+
+某银行提供1个服务窗口和10个供顾客等待的座位。
+顾客到达银行时，若有空座位，则到取号机上领取一个号，等待叫号。取号机每次仅允许一位顾客使用。
+当营业员空闲时，通过叫号选取一位顾客，并为其服务。
+顾客和营业员的活动过程描述如下： 
+
+semphore seet=10，mutex=1（互斥信号量），havesig=0（合作信号量）
+
+
+cobegin {     process顾客i {     从取号机获得一个号码；     等待叫号；     获得服务； } process营业员 {    while(TRUE){        叫号；       为顾客服务；     }   } }coend
+
+
+
+
+
+
+
+
+
+
+

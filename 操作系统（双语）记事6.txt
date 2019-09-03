@@ -1,0 +1,499 @@
+2018.3.6 第1次课
+QQ群：262299344 用学号和姓名修改群名片
+1 什么是程序？指挥计算机工作的一组指令。（可执行程序）
+2 程序有什么组成：printf("hello OS!");指令+数据
+3 内存（主存）：存储正在执行的程序。
+  进程：process（a program is in exection）
+  process and program:
+  program is a static entity.
+  process is a dynamic entity.Process has its own life period.
+  程序和进程不是一一对应的。
+4 CPU：处理器是用来执行程序的。
+5 外存：存储数据。
+
+6 计算机系统的资源（computer resources）:
+
+software:进程，,文件file system（数据）
+hardware:CPU,存储器（main memory），设备（I/O devices）
+
+7 操作系统：能够管理计算机系统的软件和硬件资源的系统软件。
+8 为什么需要OS：操作系统屏蔽了底层的硬件细节。给用户提供了一个清晰，易用的操作接口。
+9 programming level
+(1)application programming
+(2)system programming
+(3)kernel programming
+10 computer organization
+CPU,memory,I/O controller,bus
+
+task P15-17
+
+------------------------------------------------
+2018.3.9 第二次课
+overview：
+（1）list computer resources.
+software:file system,process(进程)
+hardware:CPU,main memory,I/O devices
+（2）what is Operating system？
+OS is a system program,it can manage all the computer resources,it also can provide platform for user.
+（3）what is process? Try to discribe the difference between program and process?
+   Process is a program is in execution.program is a static entity,process is dynamic entity.Process has its own life period.
+
+1 OS development stages:
+（1）simple batch system:one task in main memory.
+     Monitor.
+(2)multiprogrammming batch system:
+     multiple tasks are kept in the main memory at any time.
+     OS:CPU scheduling,job scheduling.
+
+CPU become free:I/O; program finish.
+
+(3)time sharing(分时系统，分享CPU的时间片)
+   CPU become free:I/O; program finish；time out
+   compare multiprogrammming batch system,time sharing should have more overhead（开销）.
+  时间片不能太大，也不能太小，应该大于一次典型交互的时间。
+   有比较好的相应时间和用户的交互，相对公平的一种OS。
+（4）real time system(实时操作系统)：用在嵌入式领域，有严格的时间限制。
+
+2 keywords for chapter 1.
+3 Linux安装和简单使用。
+----------------------------------------------------
+2018.3.12 第3次课 Linux基本操作
+overview：
+（1）discribe OS development stages.
+（2）what is time slice in time sharing system?
+1 用户创建
+ctrl+alt+f1-f7：在图形界面和文本界面的虚拟终端间切换。
+useradd zhangsan
+passwd zhangsan
+2 文件系统（file system）：some commands usage
+  useradd
+  passwd
+  cd 
+  ls(ls -a)(ls -l)
+  virtual termimal
+  mkdir
+  pwd
+  rmdir
+  rm
+  cp 
+  mv
+  find
+绝对路径和相对路径
+-------------------------------------------------
+2018.3.16 第4次课
+3 vi：editor
+vi 操作：
+（1）vi filename
+ (2) command mode,insert mode.
+     c->i(i,a,o);i->c(esc)
+     command mode:nyy（copy），p（paste），ndd（delete），u（undo），set number,/string(find a string)
+4 gcc:compiler
+  c code must have the .c suffix.
+  gcc file.c -o file.o   get an executable file
+  ./file.o
+
+chapter2 
+1 OS services
+2 interface  CML(shell 命令解释程序),GUI（desktop,icon,folder）
+3 system call(系统调用)：Programming interface to the services provided by the OS。
+4 OS structure
+  simple structer  DOS
+  layer structer   UNIX
+  microkernel structer  MAC
+  module structer       solaries
+ 
+---------------------------------------------
+2018.3.20 第5次课
+overview
+（1）what is system call?
+（2）list some OS Structure
+
+chapter 3
+1 Concurrency（并发）
+  并发：单处理器多任务系统中，在一段时间间隔内，宏观上多个任务都在执行，但是微观上轮流使用处理器。这样表现出来的程序执行的特征叫做并发。
+  并行：多个任务在同一时刻发生，前提是多处理器系统。
+  程序并发带来的问题：在共享资源的时候，会出现“结果不可再现”。
+  引入进程：使得并发的多个实体执行“结果可再现”。
+2 Process Concept，compare process and program
+3 * Process state
+    new,running,ready,waiting(block),terminated
+4 * PCB
+    each process has its own PCB, PCB is a container of process's information.
+-----------------------------------------------
+2018.3.23 第6次课
+overview：
+（1）what is concurrency?
+（2）what is PCB？（Process Control Block）
+（3）习题册 P7 填空4,5 
+           P8 简答题1,3
+
+today's content:
+1 Process Scheduling
+(1)long-term scheduling
+(2)short-term scheduling
+(3)medium-term scheduling(swapping)
+2 Operations on Processes（practicing）
+  fork():create process
+  wait():wait child process terminated
+  exec():
+
+阅读：http://blog.csdn.net/jason314/article/details/5640969
+
+P8 简答题 4
+
+------------------------------------------
+2018.3.27 第7次课
+overview：
+（1）how to create a process in Linux?
+（2）习题册P8 简答题 4
+（3）实验指导书 P11 -12  程序1-4
+
+today's content
+(1)exec family
+
+The exec() system call is used after a fork() system call by one of the two processes to replace the process’s memory space with a new program. In this manner, the two processes are able to go their separate way and communicate with each other.
+(2)shell0
+#include <stdlib.h>
+char cmd[100];
+while(1){
+print prompt %:
+input a command;//scanf();
+id=fork()
+if(id==0)
+   {
+   execvp();
+   exit(1);
+   }
+else
+   {
+wait(NULL);
+continue;
+   }
+}
+
+}
+
+--------------------------------------------
+2018.3.29 第8次课
+overview：
+what can exec family system call do in Linux?
+
+
+today's content
+1 IPC
+Interprocess Communication（practicing）
+（1）pipe (practicing)：管道（亲缘关系进程间的通信）
+（2）Shared memory：共享内存（任何进程均可使用）
+（3）Message passing：消息传递（传递的信息量大）
+     direct Communication（直接通信）
+          send (P, message) 
+          receive(Q, message)
+     Indirect Communication（间接通信）
+         send(A, message) 
+         receive(A, message)
+线程：
+（1）什么是线程：进程中的一条执行路线。
+（2）为什么引入线程？时间和空间开销比进程小。
+（3）一个进程中的多个线程会共享他们所隶属的进程的资源。
+（4）进程是拥有资源的单位，线程是CPU调度的单位。
+
+
+
+
+
+<stdio.h>
+#include <pthread.h>
+void thread(void)
+{
+	int i;
+	for(i=0;i<3;i++)
+	{
+		printf("This is a pthread.\n");
+		sleep(1);
+	}
+}
+int main(void)
+{
+	pthread_t id;
+	int i,ret;
+	ret=pthread_create(&id,NULL,(void *) thread,NULL);
+	if(ret!=0)
+	{
+		printf ("Create pthread error!\n");
+		exit (1);
+	}
+	for(i=0;i<3;i++)
+	{
+		printf("This is the main process.\n"); 
+		sleep(1);
+	}
+	pthread_join(id,NULL);
+	return (0);
+}
+
+-----------------
+#include <stdio.h>
+#include <pthread.h>
+#include <sys/types.h>
+void thread(void)
+{	int i,sum=0;
+	for(i=1;i<=10;i++)
+	{	sum=sum+i;
+		sleep(1);
+	}
+	printf("The sum is %d\n",sum);
+}
+int main()
+{	pthread_t id,id1;
+	int i,ret;
+	char  buf[80];
+	ret=pthread_create(&id,NULL,(void *) thread,NULL);
+	while(1)
+	{	printf("please input a string\n");
+		scanf("%s",buf);
+		printf("This string is %s\n",buf);
+	}
+	pthread_join(id,NULL);
+	return (0);
+}
+
+
+线程是进程的一个执行流程,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位.线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源. 
+一个线程可以创建和撤销另一个线程;同一个进程中的多个线程之间可以并发执行，并且线程切换时会花费更少的时间和空间的代价。
+-------------------------------------------
+2018.4.3 第9次课
+overview：
+（1）什么是线程
+（2）为什么引入线程？
+
+today's content:chapter 6
+(1)The relationship between processes(进程间关系)
+   互斥：mutual exclusion  合作（同步）：cooperation
+(2)The Critical-Section Problem（互斥区问题）
+   
+(3)Semaphores（信号量）
+   count>0 表示还有资源可用
+   count=0 表示没有资源了
+   count<0 表示有进程在队列中等待，并且|count|是等待队列中进程的数量
+  wait（s）；申请资源
+  signal（s）：释放资源
+  semaphore s;s 的初值一定非负数；
+  wait和signal操作成对出现在同一个进程中。
+  
+----------------------------------
+2018.4.8 第10次课
+overview：
+（1）what is mutual exclusion relation and cooperation relation between processes？
+（2）what is critical resource（临界资源）？
+（3）what is critical section（临界区）？
+（4）what is semaphore？
+struct semaphore{
+	int count；
+        PCB queue；
+}
+semaphore s.count=1;
+wait（s）{//申请资源
+	s.count--;
+	if(s.count<0)
+		block();//waiting in queue;
+
+} 
+signal（s） {//释放资源
+	s.count++;
+	if(s.count<=0)
+	wakeup();//wake up a process in queue to excute;
+}
+(5)wait(),signal() are executed atomically（原子操作）
+ 2 printers; 3 processes execute concurrently.
+semaphore s=2;
+p1(){
+wait(s); s=-1
+use printer;//critical section
+signal(s); s=2
+}
+p2(){
+wait(s); s=0
+use printer;//critical section
+signal(s); s=1
+
+}
+p3(){
+
+wait(s); s=1
+use printer;//critical section
+signal(s); s=0
+}
+
+today's content:
+1 the second usage of semaphore:cooperation between processes.
+
+ flag:等待伙伴进程的消息是否到达。
+       wait（flag）：检查有没有消息
+       signal（flag）：通知伙伴进程可以执行了
+2 习题
+---------------------------------------
+2018.4.10 第11次课
+overview：
+（1）In mutual exclusion,discribe the meaning of wait() and signal() operations.
+（2）In cooperation,discribe the meaning of wait() and signal()operations.
+
+
+
+
+(1) 对信号量只能执行wait、signal操作，且成对出现。
+(2) 互斥：同一个信号量的wait和signal在一个进程里
+      Wait—申请临界资源
+      signal—释放临界资源
+(3) 合作：同一个信号量的wait和signal在不同进程里
+      Wait--判断自己等待的消息是否到达
+      Signal—通知伙伴进程可以执行了
+
+today's content
+Producer and consumer problem
+(1)one producer, one consumer and one buffer (并发执行)
+semaphore empty=1,full=0;(不需要考虑互斥)
+producer(){
+
+produce a data;
+wait(empty);
+put the data into the buffer;
+signal(full);
+}
+
+consumer(){
+wait(full);
+take the data from buffer;
+signal(empty);
+
+consume it;
+}
+
+
+(2)multiple producers, multiple consumers and multiple buffers（buffer pool）
+semaphore empty=n,full=0;
+semaphore mutex=1;//互斥使用缓冲池
+
+producer(){
+produce a data;
+
+
+wait(empty);//判定有没有空间
+wait(mutex);//申请缓冲池
+put the data into the buffer pool;
+signal(mutex);//释放缓冲池
+signal(full);//通知C进程有数据了
+
+}
+
+consumer(){
+wait(full);//判定有没有数据
+wait(mutex);//申请缓冲池
+take the data from buffer pool;
+signal(mutex);//释放缓冲池
+signal(empty);//通知P进程有空间了
+
+consume it;
+}
+
+
+习题7、8
+考研题 1 放到群里
+-------------------------------
+2018.4.13 第12次课
+overview：
+（1）discribe the producer and consumer problem
+（2）exercise:7和考研题
+
+today's content
+（1）reader and writer problem(concurrently)
+
+semaphore mutex=1;//所有进程互斥
+semaphore rmutex=1;//所有读进程对readercnt变量的互斥
+int readercnt=0;//读者进程的个数
+
+reader(){
+wait(rmutex);
+readercnt++;
+if(readercnt==1)
+	wait(mutex);//第一个读者进程申请资源
+signal(rmutex);
+
+read file;
+
+wait(rmutex);
+readercnt--;
+if(readercnt==0)
+	signal(mutex);//最后一个读者释放资源
+signal(rmutex);
+
+}
+
+writer(){
+wait(mutex):
+write file;
+signal(mutex):
+}
+
+readercnt=readercnt+1;
+MOV AX,[2000]
+ADD AX,1
+MOV [2000],AX
+（2）dining philosopher problem
+每个哲学家只能取盘子左右两侧的筷子，没拿到第二根筷子之前，不放手里的筷子。
+
+解决方案2：奇数号的哲学家先申请左手边的筷子，偶数号的哲学家先申请右手边的筷子。
+用信号量的机制实现。
+
+1 Critical resource ：Critical resource is a kind of resource that can be used by only one process within a period of time.
+2 Critical section: a segment of code that the critical resource can be used.
+
+---------------------------------------
+2018.4.20 第13次课
+chapter 5:CPU scheduling 
+(1)three levels scheduling
+   long-term scheduler
+   short-term scheduler 
+   medium-term scheduler
+(2)CPU scheduler(short-term scheduler):select one process from ready queue in the memory.
+
+nonpreemptive 非抢占调度
+一个进程获得了CPU就会一直占用，直到运行结束或者遇到I/O操作。
+preemptive 抢占调度
+可以基于时间片或者优先级来抢占当前进程的CPU资源
+
+(3)Dispatcher上下文切换
+(4)Scheduling Criteria 调度条件
+(5)scheduling algorithms
+FCFS:选择就绪队列中等待时间最长的进程。
+     非抢占式调度。
+SJF：选择服务时间最短的进程
+     非抢占式调度。
+HRRN：选择最高优先权（响应比）的进程进行调度。
+      R=1+W/S
+     非抢占式调度。
+RR:   选择就绪队列的队首进程分时间片，能执行完就结束，执行不完，就到就绪队列的队尾排队等待下一个时间片。
+     基于时间片抢占式调度。
+
+作业：综合题 1,2,3
+chapter 7:deadlock 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

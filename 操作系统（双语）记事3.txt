@@ -1,0 +1,103 @@
+2018.3.6 第1次课
+QQ群：262299344 用学号和姓名修改群名片
+1 什么是程序？指挥计算机工作的一组指令。（可执行程序）
+2 程序有什么组成：printf("hello OS!");指令+数据
+3 内存（主存）：存储正在执行的程序。
+  进程：process（a program is in exection）
+  process and program:
+  program is a static entity.
+  process is a dynamic entity.Process has its own life period.
+  程序和进程不是一一对应的。
+4 CPU：处理器是用来执行程序的。
+5 外存：存储数据。
+
+6 计算机系统的资源（computer resources）:
+
+software:进程，,文件file system（数据）
+hardware:CPU,存储器（main memory），设备（I/O devices）
+
+7 操作系统：能够管理计算机系统的软件和硬件资源的系统软件。
+8 为什么需要OS：操作系统屏蔽了底层的硬件细节。给用户提供了一个清晰，易用的操作接口。
+9 programming level
+(1)application programming
+(2)system programming
+(3)kernel programming
+10 computer organization
+CPU,memory,I/O controller,bus
+
+task P15-17
+
+------------------------------------------------
+2018.3.9 第二次课
+overview：
+（1）list computer resources.
+software:file system,process(进程)
+hardware:CPU,main memory,I/O devices
+（2）what is Operating system？
+OS is a system program,it can manage all the computer resources,it also can provide platform for user.
+（3）what is process? Try to discribe the difference between program and process?
+   Process is a program is in execution.program is a static entity,process is dynamic entity.Process has its own life period.
+
+1 OS development stages:
+（1）simple batch system:one task in main memory.
+     Monitor.
+(2)multiprogrammming batch system:
+     multiple tasks are kept in the main memory at any time.
+     OS:CPU scheduling,job scheduling.
+
+CPU become free:I/O; program finish.
+
+(3)time sharing(分时系统，分享CPU的时间片)
+   CPU become free:I/O; program finish；time out
+   compare multiprogrammming batch system,time sharing should have more overhead（开销）.
+  时间片不能太大，也不能太小，应该大于一次典型交互的时间。
+   有比较好的相应时间和用户的交互，相对公平的一种OS。
+（4）real time system(实时操作系统)：用在嵌入式领域，有严格的时间限制。
+
+2 keywords for chapter 1.
+3 Linux安装和简单使用。
+----------------------------------------------------
+2018.3.12 第3次课 Linux基本操作
+overview：
+（1）discribe OS development stages.
+（2）what is time slice in time sharing system?
+1 用户创建
+ctrl+alt+f1-f7：在图形界面和文本界面的虚拟终端间切换。
+useradd zhangsan
+passwd zhangsan
+2 文件系统（file system）：some commands usage
+  useradd
+  passwd
+  cd 
+  ls(ls -a)(ls -l)
+  virtual termimal
+  mkdir
+  pwd
+  rmdir
+  rm
+  cp 
+  mv
+  find
+绝对路径和相对路径
+在Linux中，绝对路径是从/（也被称为根目录）开始的，比如/usr、/etc/X11。
+如果一个路径是从/开始的，它一定是绝对路径
+[root@localhost ~]# pwd 注
+
+相对路径是以 . 或 .. 开始的，.表示用户当前操作所处的位置，而.. 表示上级目录；
+在路径中，.表示用户当前所处的目录，而..上级目录，要把.和..当做目录来看。
+
+3 vi：editor
+4 gcc:compiler
+
+
+yy p 
+
+
+
+
+
+
+
+
+
+

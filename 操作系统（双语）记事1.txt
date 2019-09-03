@@ -1,0 +1,34 @@
+2018.3.6 第1次课
+QQ群：262299344 用学号和姓名修改群名片
+1 什么是程序？指挥计算机工作的一组指令。（可执行程序）
+2 程序有什么组成：printf("hello OS!");指令+数据
+3 内存（主存）：存储正在执行的程序。
+  进程：process（a program is in exection）
+  process and program:
+  program is a static entity.
+  process is a dynamic entity.Process has its own life period.
+  程序和进程不是一一对应的。
+4 CPU：处理器是用来执行程序的。
+5 外存：存储数据。
+
+6 计算机系统的资源（computer resources）:
+
+software:进程，,文件file system（数据）
+hardware:CPU,存储器（main memory），设备（I/O devices）
+
+7 操作系统：能够管理计算机系统的软件和硬件资源的系统软件。
+OS is a system program,it can manage all the computer resources,it also can provide platform for user.
+8 为什么需要OS：操作系统屏蔽了底层的硬件细节。给用户提供了一个清晰，易用的操作接口。
+9 programming level
+(1)application programming
+(2)system programming
+(3)kernel programming
+10 computer organization
+CPU,memory,I/O controller,bus
+
+task P15-17
+disk磁盘
+pwd 
+ls目录
+man ls 查询ls作用
+man 。。。
